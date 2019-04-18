@@ -1,0 +1,200 @@
+﻿@model EziBuy.Models.User
+
+@{
+    ViewBag.Title = "User Information";
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>User</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger", @ShowMessageBox = "True" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @*this work for delete*@
+            @*<a href="#" class="btn btn-success" onclick="EditUserInformation(@Model.Id)">Edit Information</a>*@
+            <button type="button" class="btn btn-info btn-lg" onclick="EditUserInformation()"> Edit Information</button>
+        </div>
+    </div>
+</div>
+}
+<div class="container" style="width:40%; margin-top:2%">
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Edit Personnal Information</h3>
+                </div>
+                <div class="modal-body" id="myModalBodyDiv">
+                    <form id="myForm">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger", @ShowMessageBox = "True" })
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                                @Html.ValidationMessageFor(model => model.FirstName, "")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                @Html.ValidationMessageFor(model => model.LastName, "")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @placeholder = "Email Id" })
+                                @Html.ValidationMessageFor(model => model.EmailId, "")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model=>model.Gender, new List<SelectListItem>
+                { new SelectListItem { Text = "Male", Value = "Male" },
+                     new SelectListItem { Text = "Female", Value = "Female" }}, "Select Gender", new { @class = "form-control", @placeholder="Gender" })
+                                @Html.ValidationMessageFor(model => model.Gender, "")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @placeholder = "Date of Birth" })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth, "")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+                                @Html.ValidationMessageFor(model => model.Password, "")
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="#" class="btn btn-success btn-block" id="btnSubmit">Save</a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div style="text-align:center; display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day[1].gif" width="150" />
+                    </div>
+
+                </div>
+                @*<div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        <input type="reset" value="Save" class="btn btn-success" id="btnSubmit" />
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+@*this work for edit information*@
+@*<script>
+        var EditUserInformation = function (userId) {
+            var url = "/UserProfile/EditUserInformation?UserId=" + userId;
+
+            $("#myModalBodyDiv").load(url, function () {
+                $("#myModal").modal("show");
+            })
+        }
+    </script>*@
+
+<script>
+    var EditUserInformation = function () {
+
+        $("#myModal").modal("show");
+    }
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+
+
+
+            var myFormData = $("#myForm").serialize();
+            //Condition validate the data enter by user and shows the validation messages
+            if (!$("#myForm").valid()) {
+                return false;
+            }
+            $("#loaderDiv").show();
+            
+            $.ajax({
+                type: "Post",
+                url: "/UserProfile/EditUserInformation",
+                data: myFormData,
+                success: function () {
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+                    window.location.href = "/UserProfile/EditUserInformation";
+
+                }
+            })
+        })
+    })
+</script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+
+
+

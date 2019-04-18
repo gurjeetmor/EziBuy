@@ -1,0 +1,163 @@
+﻿@model IEnumerable<EziBuy.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "DisplayProductCategory";
+}
+
+<h2>Product Category</h2>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<a href="#" class="btn btn-success" onclick="EditProductCategory(0)">Add New Product Category</a>
+<div class="container" style="width:100%; margin-top:2%; text-align:center">
+
+    <table class="table table-responsive">
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (ViewBag.categoryList != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr id="row_@item.Id">
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+
+                    <td>
+                        <a href="#" title="Update Product Category" class="btn btn-success" onclick="EditProductCategory(@item.Id)"><i class="glyphicon glyphicon-pencil"></i></a>
+                    </td>
+                    <td>
+                        <a href="#" title="Delete Product Category" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                    <td>
+                        <a href="#" title="Category Products List" class="btn btn-danger" onclick="CategoryProductsList(@item.Id)"><i class="glyphicon glyphicon-list"></i></a>
+                    </td>
+
+                </tr>
+            }
+        }
+    </table>
+    <input type="hidden" id="hiddenCategoryId" />
+
+    @*Modal to Delete the Product Category*@
+    <div class="modal fade" id="myModalDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete</h3>
+                </div>
+                <div class="modal-body">
+                    <h4> Are you sure to delete this product category ?</h4>
+                    <div style="text-align:center; display:none" id="loaderDiv">
+
+                        <img src="~/Content/InternetSlowdown_Day[1].gif" width="150" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteProductCategory()">Confirm Delete</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Script to Delete the Product Category details*@
+<script>
+    var ConfirmDelete = function (categoryId) {
+        $("#hiddenCategoryId").val(categoryId);
+        $("#myModalDelete").modal("show");
+    }
+    var DeleteProductCategory = function () {
+
+        $("#loaderDiv").show();
+        var category_Id = $("#hiddenCategoryId").val();
+
+        $.ajax({
+            type: "Post",
+            url: "/ProductCategory/DeleteCategory",
+            data: { categoryId: category_Id },
+            success: function () {
+
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + category_Id).remove();
+                window.location.href = "/ProductCategory/DisplayProductCategory";
+            }
+        })
+    }
+</script>
+
+@*Modal to Edit the Product Category*@
+<div class="container" style="width:40%; margin-top:2%">
+    <div class="modal fade" id="myModalAddEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Product Category Information</h3>
+                </div>
+                <div class="modal-body" id="myModalBodyDivAddEdit">
+                    @* Here Modal Body will be Uploaded through Partial View(CategoryPartial) *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Script to show the model to edit the Product Category Information*@
+<script>
+    var EditProductCategory = function (categoryId) {
+        var url = "/ProductCategory/EditProductCategory?CategoryId=" + categoryId;
+
+        $("#myModalBodyDivAddEdit").load(url, function () {
+            $("#myModalAddEdit").modal("show");
+        })
+    }
+</script>
+
+@*Modal to Display Category products information*@
+<div class="container">
+    <div class="modal fade" id="myModalProductList">
+        <div class="modal-dialog" style="width:90%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    @*<h3 class="modal-title">Category Products List</h3>*@
+                </div>
+                <div class="modal-body" id="myModalBodyDivProductList">
+                    @* Here Modal Body will be Uploaded using View(CategoryProductList) *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Script to dispaly category product list*@
+<script>
+    var CategoryProductsList = function (categoryId) {
+        var url = "/ProductCategory/CategoryProductsList?CategoryId=" + categoryId;
+
+        $("#myModalBodyDivProductList").load(url, function () {
+            $("#myModalProductList").modal("show");
+        })
+    }
+</script>

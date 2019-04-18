@@ -1,0 +1,126 @@
+﻿@model EziBuy.Models.User
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+
+<div>
+    <form id="myFormAddEdit">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger", @ShowMessageBox="True" })
+
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                @Html.ValidationMessageFor(model => model.FirstName, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                @Html.ValidationMessageFor(model => model.LastName, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control", @placeholder = "Email Id" })
+                @*<span id="messageDisplay" style="text-align:center"></span>*@
+                @*<p id="messageDisplay"></p>*@
+                @Html.ValidationMessageFor(model => model.EmailId, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.DropDownListFor(model=>model.Gender, new List<SelectListItem>
+{ new SelectListItem { Text = "Male", Value = "Male" },
+     new SelectListItem { Text = "Female", Value = "Female" }}, "Select Gender", new { @class = "form-control", @placeholder="Gender" })
+                @Html.ValidationMessageFor(model => model.Gender, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", @placeholder = "Date of Birth" })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+                @Html.ValidationMessageFor(model => model.Password, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <a href="#" class="btn btn-success btn-block" id="btnSubmit">
+                    @if (Model.Id > 0)
+                    {<span>Update</span>}
+                    else
+                    {<span>Save</span>}
+                </a>
+            </div>
+        </div>
+        <div style="text-align:center; display:none" id="loaderDiv">
+
+            <img src="~/Content/InternetSlowdown_Day[1].gif" width="150" />
+
+        </div>
+    </form>
+    
+</div>
+
+
+<script>
+    //function UserCheck() {
+    //    var email = $("#userEmail").val();
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Admin/CheckEmail",
+    //        data: '{useremail:"' + email + '"}',
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json",
+    //        success: function (result) {
+    //            var message = $("#messageDisplay");
+    //            if (result) {
+    //                message.html("Email Id not available ! Please select another one.");
+    //                message.css("color", "red");
+    //            }
+    //            else {
+    //                message.html("Email Id is available !!");
+    //                message.css("color", "green");
+
+    //            }
+    //        }
+    //    })
+    //}
+
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+
+            var myFormData = $("#myFormAddEdit").serialize();
+            //Condition validate the data enter by user and shows the validation messages
+            if (!$("#myFormAddEdit").valid()) {
+                return false;
+            }
+            
+            $("#loaderDiv").show();
+
+            $.ajax({
+                type: "Post",
+                url: "/Admin/UsersDetail",
+                data: myFormData,
+                success: function () {
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+                    window.location.href = "/Admin/UsersDetail";
+                }
+            })
+        })
+    })
+
+    
+</script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

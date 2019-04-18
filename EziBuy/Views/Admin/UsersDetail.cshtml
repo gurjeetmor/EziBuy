@@ -1,0 +1,155 @@
+﻿@model IEnumerable<EziBuy.Models.User>
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>User List</h2>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<a href="#" class="btn btn-success" title="Add new user" onclick="EditUserInformation(0)">Add New User</a>
+<div class="container" style="width:100%; margin-top:2%; text-align:center">
+    
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (ViewBag.userDetailList != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr id="row_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailId)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth, "{0:dd/MM/yyyy}")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        <a href="#" title="Edit User Details" class="btn btn-success" onclick="EditUserInformation(@item.Id)"><i class="glyphicon glyphicon-pencil"></i></a>                        
+                    </td>
+                    <td>
+                        <a href="#" title="Delete User Details" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <input type="hidden" id="hiddenUserId" />
+
+    @*Modal to Delete the User Record*@
+    <div class="modal fade" id="myModalDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete</h3>
+                </div>
+                <div class="modal-body">
+                    <h4> Are you sure to delete this record ?</h4>
+                    <div style="text-align:center; display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day[1].gif" width="150" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteUserDetail()">Confirm Delete</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Code to Delete the User Record*@
+<script>
+    var ConfirmDelete = function (userId) {
+        $("#hiddenUserId").val(userId);
+        $("#myModalDelete").modal("show");
+    }
+    var DeleteUserDetail = function () {
+
+        $("#loaderDiv").show();
+        var user_Id = $("#hiddenUserId").val();
+
+        $.ajax({
+            type: "Post",
+            url: "/Admin/DeleteUser",
+            data: { userId: user_Id },
+            success: function () {
+
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + user_Id).remove();
+                window.location.href = "/Admin/UsersDetail";              
+            }
+        })
+    }
+</script>
+
+@*Modal to Edit User Information*@
+<div class="container" style="width:40%; margin-top:2%">
+    <div class="modal fade" id="myModalAddEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">User Information</h3>
+                </div>
+                  <div class="modal-body" id="myModalBodyDivAddEdit">
+                    @* Here Modal Boday will be Uploaded through Partial View(EditUserInformationPartial) *@   
+                      
+                </div>              
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Function to upload the Modal to Edit User Information*@
+<script>
+        var EditUserInformation = function (userId) {
+            var url = "/Admin/EditUserInformation?UserId=" + userId;
+
+            $("#myModalBodyDivAddEdit").load(url, function () {
+                $("#myModalAddEdit").modal("show");
+            })
+        }
+</script>
+
+
+
+

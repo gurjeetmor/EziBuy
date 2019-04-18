@@ -1,0 +1,223 @@
+﻿@model IEnumerable<EziBuy.Models.ProductDetail>
+
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<h2>Product List</h2>
+
+
+
+
+<a href="#" class="btn btn-success" onclick="AddNewProduct()">Add New Product</a>
+<div class="container" style="width:100%; margin-top:2%; text-align:center">
+
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <td></td>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AltText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @if (ViewBag.productDetailList != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr id="row_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-danger" title="Edit Product Image" onclick="EditProductImage(@item.Id)"><i class="glyphicon glyphicon-edit"></i></a>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.ImageUrl)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AltText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Caption)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        <a href="#" title="Edit Product Information" class="btn btn-success" onclick="EditProductDetail(@item.Id)"><i class="glyphicon glyphicon-pencil"></i></a>
+                    </td>
+                    <td>
+                        <a href="#" title="Delete Product Information" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+
+                </tr>
+            }
+        }
+    </table>
+    <input type="hidden" id="hiddenProductId" />
+
+    @*Modal to Delete the Product Detail from Product Detail List*@
+    <div class="modal fade" id="myModalDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete</h3>
+                </div>
+                <div class="modal-body">
+                    <h4> Are you sure to delete this record ?</h4>
+                    <div style="text-align:center; display:none" id="loaderDiv">
+                        <img src="~/Content/InternetSlowdown_Day[1].gif" width="150" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteProductDetail()">Confirm Delete</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Script to Delete the Product Detail from Product Detail List*@
+<script>
+    var ConfirmDelete = function (productId) {
+        $("#hiddenProductId").val(productId);
+        $("#myModalDelete").modal("show");
+    }
+    var DeleteProductDetail = function () {
+
+        $("#loaderDiv").show();
+        var product_Id = $("#hiddenProductId").val();
+
+        $.ajax({
+            type: "Post",
+            url: "/Product/DeleteProduct",
+            data: { productId: product_Id },
+            success: function () {
+
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + product_Id).remove();
+                window.location.href = "/Product/DisplayProductList";
+            }
+        })
+    }
+</script>
+
+@*Modal to Edit the Product Detail in Product Detail List*@
+<div class="container" style="width:40%; margin-top:2%">
+    <div class="modal fade" id="myModalEditProduct">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Product Information</h3>
+                </div>
+                <div class="modal-body" id="myModalBodyDivEditProduct">
+                    @* Here Modal Body will be Uploaded using Partial View(EditProductnformationPartial) *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Script to show the model to Edit the Product Detail in Product Detail List*@
+<script>
+    var EditProductDetail = function (productId) {
+        var url = "/Product/EditProductDetail?ProductId=" + productId;
+
+        $("#myModalBodyDivEditProduct").load(url, function () {
+            $("#myModalEditProduct").modal("show");
+        })
+    }
+</script>
+
+
+@*Create Product Detail*@
+@*Modal to Add the new Product Details in Product Detail List*@
+<div class="container" style="width:40%; margin-top:2%">
+    <div class="modal fade" id="myModalAddNewProduct">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Product Information</h3>
+                </div>
+                <div class="modal-body" id="myModalBodyDivAddNewProduct">
+                    @* Here Modal Body will be Uploaded through Partial View(CreateProductPartial) *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Script to Display the Model to Add the new Product Details in Product Detail List*@
+<script>
+    var AddNewProduct = function () {
+        var url = "/Product/CreateProduct";
+
+        $("#myModalBodyDivAddNewProduct").load(url, function () {
+            $("#myModalAddNewProduct").modal("show");
+        })
+    }
+</script>
+
+@*Model to Edit the Product Image*@
+<div class="container" style="width:40%; margin-top:2%">
+    <div class="modal fade" id="myModalUpdateProductImage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Update Image</h3>
+                </div>
+                <div class="modal-body" id="myModalBodyDivUpdateProductImage">
+                    @* Here Modal Body will be Uploaded through Partial View(EditProduct) *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Function to upload the Modal to Edit User Information*@
+<script>
+    var EditProductImage = function (productId) {
+        var url = "/Product/EditProductImage?ProductId=" + productId;
+
+        $("#myModalBodyDivUpdateProductImage").load(url, function () {
+            $("#myModalUpdateProductImage").modal("show");
+        })
+    }
+</script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>

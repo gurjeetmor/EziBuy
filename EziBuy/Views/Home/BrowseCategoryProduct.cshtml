@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EziBuy.Models.ProductDetail>
+
+
+<link href="~/Content/EziBuy.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row">
+        @{
+            Html.RenderAction("CategoryNavBarList", "Home");
+        }
+        <div class="col-md-9">
+            <br /><br />
+                  <div class="row">
+                      @foreach (var item in Model)
+                      {                        
+                          <div class="col-md-3">
+                              <div class="thumbnail">
+                                  <a href="@Url.Action("ProductDescription", "Home", new {productId=item.Id })" target="_blank">
+                                      <img src="@Url.Content(item.ImageUrl)" class="img-responsive" style="width:100%" alt="@item.AltText" />
+                                      <div class="caption">
+                                          <p>@item.Caption</p>                                         
+                                      </div>
+                                  </a>
+                              </div>
+                              <br/><br/>
+                          </div>                         
+                      }
+
+                 </div>           
+        </div>
+    </div>
+</div>
+
+

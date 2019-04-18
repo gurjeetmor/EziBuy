@@ -1,0 +1,87 @@
+﻿@model IEnumerable<EziBuy.Models.ProductImage>
+<link href="~/Content/EziBuy.css" rel="stylesheet" />
+<link href="~/Content/drift-basic.min.css" rel="stylesheet" />
+<script src="~/Scripts/Drift.min.js"></script>
+
+<style>
+    .details {
+        float: right;
+        width: 45%;
+        position: relative;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="row">
+        <nav class="col-md-1" id="img1">
+            <ul class="nav nav-pills nav-stacked">
+                <li></li>
+
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <img src="@Url.Content(item.ImageUrl)" class="img-responsive img-thumbnail" onmouseover="browseImage(this);" style="width:100%" />
+                    </li>
+
+                }
+            </ul>
+        </nav>
+        <br />
+        <div class="col-md-5">
+            <img src="@Url.Content(ViewBag.defaultImage)" data-zoom="@Url.Content(ViewBag.defaultImage)" id="expandedImg" style="width:100%" />
+
+        </div>
+        <div class="details col-md-6">
+            @{ 
+                Html.RenderAction("Details", "Home");
+            }
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+            <p>content goes here</p>
+
+        </div>
+    </div>
+
+</div>
+
+<script>   
+    //this code will work when first browse the product as it use the default first image URL
+    //when user hover the mouse on left Thumbnail images then browseImage hover function will call
+    //that will change the image source and zoom the selected image code explain in browseImage function below
+     new Drift(document.querySelector('#expandedImg'), {
+            paneContainer: document.querySelector('.details')
+        });
+</script>
+
+<script>
+    function browseImage(imgs) {
+
+        // Get the expanded image
+        var expandImg = document.getElementById("expandedImg");
+
+        // Use the same src in the expanded image as the mouse over through the image from the left grid
+        expandImg.src = imgs.src;      
+
+        //this code will update the image URL when user hover the mouse and will Zoom the current image
+        var triggerEl = document.querySelector("#expandedImg");
+        var drift = new Drift(triggerEl, {
+            paneContainer: document.querySelector(".details")
+        });
+
+        setInterval(function () {
+
+        drift.setZoomImageURL(expandImg.src);
+        triggerEl.setAttribute("data-zoom", expandImg.src);
+        }, 100);
+    }
+</script>
+

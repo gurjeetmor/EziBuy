@@ -1,0 +1,29 @@
+﻿@model EziBuy.Models.ProductDetail
+
+<h3>@Model.ProductName</h3>
+<p>@Model.ProductDescription</p>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+        @Html.Label("Price :")
+        @Html.DisplayFor(Model => Model.Price)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Color :")
+
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Quantity :")
+
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Price :")
+        
+    </div>
+
+}

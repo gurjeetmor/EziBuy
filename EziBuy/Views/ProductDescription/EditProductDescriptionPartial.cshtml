@@ -1,0 +1,53 @@
+﻿@model EziBuy.Models.ProductViewModel
+
+<div>
+    @using (Html.BeginForm("EditProductDetail", "ProductDescription", new { ProductId = ViewBag.ProductId }, FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger", @ShowMessageBox = "True" })
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @placeholder = "Product Name" })
+                @Html.ValidationMessageFor(model => model.ProductName, "")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="image" src="@Url.Content(Model.ImageUrl)" height="150" width="150" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "Product Price" })
+                @Html.ValidationMessageFor(model => model.Price, "")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">          
+                @Html.DropDownListFor(model => model.ProductId, new SelectList(ViewBag.ProductList, "Id", "ProductName"), "Choose Product Category", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductId, "")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Edit Product Information" class="btn btn-success" />
+            </div>
+        </div>
+    }
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+
