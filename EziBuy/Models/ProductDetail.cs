@@ -33,15 +33,18 @@ namespace EziBuy.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Product Description is required field")]
         [Display(Name ="Product Description")]        
-        [MaxLength(250, ErrorMessage ="Description should be less than 250 characters")]
+        [MaxLength(1000, ErrorMessage ="Description should be less than 250 characters")]
         public string ProductDescription { get; set; }
 
         [Required(AllowEmptyStrings =false, ErrorMessage ="Please select the product category")]
         public int CategoryId { get; set; }
 
+        public string Size { get; set; }
+
+        public int? Quantity { get; set; }
+
         List<ProductImage> ProductImages { get; set; }
 
         List<ProductDescriptionModel> ProductsDescriptionModel { get; set; }
-
     }
 }

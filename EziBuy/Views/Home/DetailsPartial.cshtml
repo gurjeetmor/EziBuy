@@ -1,7 +1,8 @@
 ﻿@model EziBuy.Models.ProductDetail
 
 <h3>@Model.ProductName</h3>
-<p>@Model.ProductDescription</p>
+@(new HtmlString(HttpUtility.HtmlDecode(Model.ProductDescription)))
+
 
 @using (Html.BeginForm())
 {
@@ -12,8 +13,16 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Color :")
-
+        @Html.Label("Size :")
+        @Html.DropDownListFor(model=>model.Size, new List<SelectListItem>
+            {
+                 new SelectListItem { Text = "XS", Value = "XS" },
+                 new SelectListItem { Text = "S", Value = "S" },
+                 new SelectListItem { Text = "M", Value = "M" },
+                 new SelectListItem { Text = "L", Value = "L" },
+                 new SelectListItem { Text = "XL", Value = "XL" }
+            }, "Select Size", new { @class = "form-control", @placeholder="M" })
+                @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
@@ -23,7 +32,7 @@
 
     <div class="form-group">
         @Html.Label("Price :")
-        
+
     </div>
 
 }

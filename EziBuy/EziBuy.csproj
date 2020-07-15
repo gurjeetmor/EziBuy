@@ -96,6 +96,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CarouselImages\Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
+    <Content Include="CarouselImages\iPhoneX-Svr.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -107,25 +109,87 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="ProductImages\Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
-    <Content Include="ProductImages\Red-Flowers.bmp" />
+    <Content Include="ProductImages\MenO1A.jpg" />
+    <Content Include="ProductImages\MenO1B.jpg" />
+    <Content Include="ProductImages\MenO2A.jpg" />
+    <Content Include="ProductImages\MenO2B.jpg" />
+    <Content Include="ProductImages\MenO3A.jpg" />
+    <Content Include="ProductImages\MenO3B.jpg" />
+    <Content Include="ProductImages\MenO4A.jpg" />
+    <Content Include="ProductImages\MenO4B.jpg" />
+    <Content Include="ProductImages\MenO5A.jpg" />
+    <Content Include="ProductImages\MenO5B.jpg" />
+    <Content Include="ProductImages\MenO6A.jpg" />
+    <Content Include="ProductImages\MenO6B.jpg" />
+    <Content Include="ProductImages\MenO7A.jpg" />
+    <Content Include="ProductImages\MenO7B.jpg" />
+    <Content Include="ProductImages\MenO8A.jpg" />
+    <Content Include="ProductImages\MenO8B.jpg" />
+    <Content Include="ProductImages\MenT10A.jpg" />
+    <Content Include="ProductImages\MenT10B.jpg" />
+    <Content Include="ProductImages\MenT11A.jpg" />
+    <Content Include="ProductImages\MenT11B.jpg" />
+    <Content Include="ProductImages\MenT12A.jpg" />
+    <Content Include="ProductImages\MenT12B.jpg" />
+    <Content Include="ProductImages\MenT13A.jpg" />
+    <Content Include="ProductImages\MenT13B.jpg" />
+    <Content Include="ProductImages\MenT1A.jpg" />
+    <Content Include="ProductImages\MenT1B.jpg" />
+    <Content Include="ProductImages\MenT2A.jpg" />
+    <Content Include="ProductImages\MenT2B.jpg" />
+    <Content Include="ProductImages\MenT3A.jpg" />
+    <Content Include="ProductImages\MenT3B.jpg" />
+    <Content Include="ProductImages\MenT4A.jpg" />
+    <Content Include="ProductImages\MenT4B.jpg" />
+    <Content Include="ProductImages\MenT5A.jpg" />
+    <Content Include="ProductImages\MenT5B.jpg" />
+    <Content Include="ProductImages\MenT6A.jpg" />
+    <Content Include="ProductImages\MenT6B.jpg" />
+    <Content Include="ProductImages\MenT7A.jpg" />
+    <Content Include="ProductImages\MenT7B.jpg" />
+    <Content Include="ProductImages\MenT8A.jpg" />
+    <Content Include="ProductImages\MenT8B.jpg" />
+    <Content Include="ProductImages\MenT9A.jpg" />
+    <Content Include="ProductImages\MenT9B.jpg" />
+    <Content Include="ProductImages\WomenO1A.jpg" />
+    <Content Include="ProductImages\WomenO1B.jpg" />
+    <Content Include="ProductImages\WomenO2A.jpg" />
+    <Content Include="ProductImages\WomenO2B.jpg" />
+    <Content Include="ProductImages\WomenO3A.jpg" />
+    <Content Include="ProductImages\WomenO3B.jpg" />
+    <Content Include="ProductImages\WomenO4A.jpg" />
+    <Content Include="ProductImages\WomenO4B.jpg" />
+    <Content Include="ProductImages\WomenT10A.jpg" />
+    <Content Include="ProductImages\WomenT10B.jpg" />
+    <Content Include="ProductImages\WomenT1A.jpg" />
+    <Content Include="ProductImages\WomenT1B.jpg" />
+    <Content Include="ProductImages\WomenT2A.jpg" />
+    <Content Include="ProductImages\WomenT2B.jpg" />
+    <Content Include="ProductImages\WomenT3A.jpg" />
+    <Content Include="ProductImages\WomenT3B.jpg" />
+    <Content Include="ProductImages\WomenT4A.jpg" />
+    <Content Include="ProductImages\WomenT4B.jpg" />
+    <Content Include="ProductImages\WomenT5A.jpg" />
+    <Content Include="ProductImages\WomenT5B.jpg" />
+    <Content Include="ProductImages\WomenT6A.jpg" />
+    <Content Include="ProductImages\WomenT6B.jpg" />
+    <Content Include="ProductImages\WomenT7A.jpg" />
+    <Content Include="ProductImages\WomenT7B.jpg" />
+    <Content Include="ProductImages\WomenT8A.jpg" />
+    <Content Include="ProductImages\WomenT8B.jpg" />
+    <Content Include="ProductImages\WomenT9A.jpg" />
+    <Content Include="ProductImages\WomenT9B.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Drift.js" />
     <Content Include="Scripts\Drift.min.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -206,8 +270,6 @@
     <Content Include="Views\ProductDescription\CreateProductDescriptionPartial.cshtml" />
     <Content Include="Views\ProductDescription\EditProductColorImagePartial.cshtml" />
     <Content Include="Views\ProductDescription\EditProductDescriptionPartial.cshtml" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,7 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="CarouselImages\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812140356350_InitialCreate.resx">

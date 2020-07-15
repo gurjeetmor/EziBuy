@@ -66,6 +66,7 @@ namespace EziBuy.Controllers
                     AltText = productViewModel.AltText,
                     Caption = productViewModel.Caption,
                     ProductDescription = productViewModel.ProductDescription,
+                    Price = productViewModel.Price,
                     CategoryId = productViewModel.CategoryId
                 };
 
@@ -120,6 +121,7 @@ namespace EziBuy.Controllers
                     AltText = productInfo.AltText,
                     Caption = productInfo.Caption,
                     ProductDescription = productInfo.ProductDescription,
+                    Price = productInfo.Price,
                     CategoryId = productInfo.CategoryId,
                 };
                 return PartialView("EditProductInformationPartial", productViewModel);
@@ -142,7 +144,9 @@ namespace EziBuy.Controllers
                 productDetail.ProductName = productViewModel.ProductName;
                 productDetail.AltText = productViewModel.AltText;
                 productDetail.Caption = productViewModel.Caption;
+                productDetail.Price = productViewModel.Price;
                 productDetail.ProductDescription = productViewModel.ProductDescription;
+
                 productDetail.CategoryId = productViewModel.CategoryId;
                 userDbContext.SaveChanges();
                 return RedirectToAction("DisplayProductList");

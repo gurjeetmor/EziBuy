@@ -45,5 +45,9 @@ namespace EziBuy.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please select the product category")]
         public int ProductId { get; set; }
+
+        public string Size { get; set; }
+
+        public int? Quantity { get; set; }
     }
 }
