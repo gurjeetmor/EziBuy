@@ -58,5 +58,17 @@
     }
 }
 
+registration-form {
+
+}
+
+.form-title {
+    text-align: center !important;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 
 

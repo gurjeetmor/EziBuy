@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: sans-serif !important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -9,25 +10,54 @@
     padding-right: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-/*input,
-select,
-textarea {
-    max-width: 280px;
-}*/
+.site-name {
+    color: white !important;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+}
 
 .add-button {
+    border: solid 2px !important;
+    border-radius: 4px !important;
     background-color: white !important;
     color: #01AEF0 !important;
     border-color: #01AEF0 !important;
-    border: solid 2px !important;
-    border-radius: 4px !important;
 }
 
 .add-button:hover {
     background-color: #01AEF0 !important;
     color: white !important;
     border-color: #01AEF0 !important;
+}
+
+.cancel-button {
+    border: solid 2px !important;
+    border-radius: 4px !important;
+    background-color: white;
+    color: black;
+    border-color: black;
+    float: right;
+}
+
+.cancel-button:hover {
+    background-color: #e7e7e7 !important;
+    color: black !important;
+    border-color: black !important;
+}
+
+.cart-button {
+    border: solid 2px !important;
+    border-radius: 4px !important;
+    background-color: white;
+    color: black;
+    border-color: #4CAF50;
+    font-weight: bold;
+}
+
+.cart-button:hover {
+    background-color: #4CAF50;
+    color: white !important;
+    border-color: #4CAF50 !important;
 }
 
 .dropdown-menu {
@@ -93,27 +123,29 @@ h1 {
 }
 
 a {
-    color: black !important;
+    /*color: black !important;*/
     text-decoration: none !important;
 }
 
 a:hover {
-    color: black !important;
+    /*color: black !important;*/
     text-decoration: none !important;
 }
 
+.product-caption {
+    color: black;
+}
+
 .product-price {
+    color: black;
     font-weight:100;
 }
 
-.navbar-brand {
-    color: white !important;
-}
-
 .product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
     margin-top: 20px !important;
+    margin-bottom: 50px;
 }
 
 @media screen and (max-width: 768px) {
@@ -123,8 +155,11 @@ a:hover {
         padding-bottom: 0px !important;
         line-height: 15px !important;
     }
-    .btn {
-        width: 100% !important;
+    .cart-button {
+        width: 100%;
+        background-color: #4CAF50;
+        color: black !important;
+        border-color: #4CAF50 !important;
     }
     .product-grid {
         grid-template-columns: 1fr 1fr !important;
@@ -151,6 +186,15 @@ a:hover {
     margin-top: 20px !important;
     text-align: center !important;
 }
+
+.footer {
+    position: fixed;
+    width: 600px;
+    left: 50%;
+    bottom: 0%;
+    margin-left: -300px;
+}
+
 
 
 

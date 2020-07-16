@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/EziBuy.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-   
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,13 +19,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("EziBuy", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("EziBuy", "Index", "Home", new { area = "" }, new { @class = "navbar-brand site-name" })
             </div>
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
-                    <li>@Html.ActionLink("About", "About", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Shop<span id="icon"></span>
@@ -38,7 +37,6 @@
                     {
                         if (User.IsInRole("Admin"))
                         {
-                            <li>@Html.ActionLink("Users", "UsersDetail", "Admin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Products<span id="icon"></span>
@@ -49,6 +47,8 @@
                                     <li>@Html.ActionLink("Products Images", "DisplayProductImages", "Image", new { area = "" }, new { @class = "dropdown-item" })</li>
                                 </ul>
                             </li>
+                            <li>@Html.ActionLink("Users", "UsersDetail", "Admin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+
                             <li>@Html.ActionLink("Categories", "DisplayProductCategory", "ProductCategory", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                             <li>@Html.ActionLink("Carousel", "DisplayCarouselList", "Carousel", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                         }
@@ -60,8 +60,8 @@
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Login", "Login", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" }))</li>
-                        <li>@Html.ActionLink("Register Now", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" }))</li>
+                        <li>@Html.ActionLink("Login", "Login", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                        <li>@Html.ActionLink("Register", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                     </ul>
                 }
             </div>
@@ -74,10 +74,12 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        @*<div class="footer">
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
     </div>
 
 
