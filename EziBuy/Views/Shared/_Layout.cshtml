@@ -23,30 +23,45 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    <li>@Html.ActionLink("About", "About", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                    <li>@Html.ActionLink("About", "About", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Shop<span id="icon"></span>
+                        </a>
+                        @{
+                            Html.RenderAction("CategoryNavBarList", "Home");
+                        }
+                    </li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Admin"))
                         {
-
-                            <li>@Html.ActionLink("User List", "UsersDetail", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Category List", "DisplayProductCategory", "ProductCategory", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Product list", "DisplayProductList", "Product", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Carousel list", "DisplayCarouselList", "Carousel", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Images", "DisplayProductImages", "Image", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("ProductDetail", "DisplayProductDescriptionList", "ProductDescription", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Users", "UsersDetail", "Admin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Products<span id="icon"></span>
+                                </a>
+                                <ul class="dropdown-menu site-bar" aria-labelledby="navbarDropdown">
+                                    <li>@Html.ActionLink("Product list", "DisplayProductList", "Product", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Products Detail", "DisplayProductDescriptionList", "ProductDescription", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Products Images", "DisplayProductImages", "Image", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Categories", "DisplayProductCategory", "ProductCategory", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                            <li>@Html.ActionLink("Carousel", "DisplayCarouselList", "Carousel", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                         }
-                        <li>@Html.ActionLink("Profile", "UserInformation", "UserProfile", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Profile", "UserInformation", "UserProfile", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                     }
                 </ul>
 
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Login", "Login", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Register Now", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Login", "Login", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" }))</li>
+                        <li>@Html.ActionLink("Register Now", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand" }))</li>
                     </ul>
                 }
             </div>
@@ -64,12 +79,22 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-   
+
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown').hover(function () {
+                $('.dropdown-toggle', this).trigger('click');
+            });
+        });
+        $(".navbar-toggle").click(function () {
+            document.getElementById("icon").classList.toggle("caret");
+        });
+    </script>
 </body>
 </html>

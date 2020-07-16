@@ -14,11 +14,11 @@
         this partial view is also share by different web pages used to display the left product
         category list display from the database*@
 
-        @{ 
+        @*@{ 
             Html.RenderAction("CategoryNavBarList", "Home");
-        }
+        }*@
 
-        <div class="col-md-9">
+        <div class="col-sm-12 col-md-12">
             <br /><br />
             @*this render method is used to diplay the carousel. First call the Carousel method in
             Home controller which pass the CarouselDetail list to Partial view and then call the 

@@ -4,35 +4,52 @@
 @(new HtmlString(HttpUtility.HtmlDecode(Model.ProductDescription)))
 
 
-@using (Html.BeginForm())
-{
+<div>
+    <form action="/ShoppingCart/AddToCart" method="post" enctype="multipart/form-data">
 
-    <div class="form-group">
-        @Html.Label("Price :")
-        @Html.DisplayFor(Model => Model.Price)
-    </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger", @ShowMessageBox = "True" })
 
-    <div class="form-group">
-        @Html.Label("Size :")
-        @Html.DropDownListFor(model=>model.Size, new List<SelectListItem>
-            {
-                 new SelectListItem { Text = "XS", Value = "XS" },
-                 new SelectListItem { Text = "S", Value = "S" },
-                 new SelectListItem { Text = "M", Value = "M" },
-                 new SelectListItem { Text = "L", Value = "L" },
-                 new SelectListItem { Text = "XL", Value = "XL" }
-            }, "Select Size", new { @class = "form-control", @placeholder="M" })
+        <div class="form-group">
+            @Html.Label("Price :")
+            @Html.DisplayFor(Model => Model.Price)
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                @Html.Label("Size :")
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownListFor(model=>model.Size, new List<SelectListItem>
+               {
+                    new SelectListItem { Text = "XS", Value = "XS" },
+                    new SelectListItem { Text = "S", Value = "S" },
+                    new SelectListItem { Text = "M", Value = "M" },
+                    new SelectListItem { Text = "L", Value = "L" },
+                    new SelectListItem { Text = "XL", Value = "XL" }
+               }, "Select Size", new { @class = "form-control custom-form-control" })
                 @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
-    </div>
+            </div>
+        </div>
 
-    <div class="form-group">
-        @Html.Label("Quantity :")
+        <div class="form-group row">
+            <div class="col-md-3">
+                @Html.Label("Quantity :")
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownListFor(model=>model.Quantity, new List<SelectListItem>
+                 {
+                      new SelectListItem { Text = "1", Value = "1" },
+                      new SelectListItem { Text = "2", Value = "2" },
+                      new SelectListItem { Text = "3", Value = "3" },
+                      new SelectListItem { Text = "4", Value = "4" },
+                      new SelectListItem { Text = "5", Value = "5" }
+                 }, "Select Quantity", new { @class = "form-control custom-form-control" })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Price :")
-
-    </div>
-
-}
+        <div class="form-group">
+            <input type="submit" value="Add To Cart" class="btn btn-success" />
+        </div>
+    </form>
+</div>

@@ -4,13 +4,10 @@
     ViewBag.Title = "ProductList";
 }
 
-<h2>Product List</h2>
+<h1>Product List</h1>
 
-
-
-
-<a href="#" class="btn btn-success" onclick="AddNewProduct()">Add New Product</a>
-<div class="container" style="width:100%; margin-top:2%; text-align:center">
+<a href="#" class="btn btn-success add-button" onclick="AddNewProduct()">Add New Product</a>
+<div class="container table-container">
 
     <table class="table table-responsive">
         <tr>
@@ -34,6 +31,12 @@
                 @Html.DisplayNameFor(model => model.ProductDescription)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CategoryId)
             </th>
             <th></th>
@@ -43,37 +46,43 @@
         {
             foreach (var item in Model)
             {
-                <tr id="row_@item.Id">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-danger" title="Edit Product Image" onclick="EditProductImage(@item.Id)"><i class="glyphicon glyphicon-edit"></i></a>
-                    </td>
-                    <td>@Html.DisplayFor(modelItem => item.ImageUrl)</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AltText)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Caption)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductDescription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryId)
-                    </td>
-                    <td>
-                        <a href="#" title="Edit Product Information" class="btn btn-success" onclick="EditProductDetail(@item.Id)"><i class="glyphicon glyphicon-pencil"></i></a>
-                    </td>
-                    <td>
-                        <a href="#" title="Delete Product Information" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i></a>
-                    </td>
+        <tr id="row_@item.Id">
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <a href="#" class="btn btn-danger" title="Edit Product Image" onclick="EditProductImage(@item.Id)"><i class="glyphicon glyphicon-edit"></i></a>
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.ImageUrl)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AltText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                <a href="#" title="Edit Product Information" class="btn btn-success" onclick="EditProductDetail(@item.Id)"><i class="glyphicon glyphicon-pencil"></i></a>
+            </td>
+            <td>
+                <a href="#" title="Delete Product Information" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i></a>
+            </td>
 
-                </tr>
+        </tr>
             }
         }
     </table>

@@ -15,6 +15,7 @@ namespace EziBuy.Models
         public DbSet<HomeCarousel> HomeCarouselContext { get; set; }
         public DbSet<ProductImage> ProductImageContext { get; set; }
         public DbSet<ProductDescriptionModel> ProductDescriptionContext { get; set; }
+        public DbSet<Size> SizeContext { get; set; }
         //public DbSet<Login> LoginContext { get; set; }
     }
 }

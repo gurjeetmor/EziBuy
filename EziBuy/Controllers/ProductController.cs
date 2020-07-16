@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,16 +33,41 @@ namespace EziBuy.Controllers
         public ActionResult CreateProduct()
         {
             UserDbContext userDbContext = new UserDbContext();
+            
+            ViewBag.ItemsBag = userDbContext.SizeContext.Select(v => new SelectListItem
+            {
+                Text = v.Name,
+                Value = v.Id.ToString() // implies all values are strings
+            }).ToList();
             //This viewBag use to pass the product category as a list to view where user can select 
             //product category from dropdown list
             ViewBag.ListofCategory = userDbContext.ProductCategoryContext.ToList();
             return PartialView("CreateProductPartial", new ProductViewModel());
         }
 
+        public List<Size> GetAllSizeTypes()
+        {
+            using (UserDbContext userDbContext = new UserDbContext())
+            {
+                var sizeDetail = userDbContext.SizeContext.ToList();
+                return sizeDetail;
+            }
+        }
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult CreateProduct(ProductViewModel productViewModel)
-        {            
+        {
+            productViewModel.Sizes = GetAllSizeTypes();
+            string sizeNames = string.Empty;
+            if (productViewModel.SizeIds != null)
+            {
+                var selectedItems = productViewModel.Sizes.Where(p => productViewModel.SizeIds.Contains((int)(p.Id))).ToList();
+                foreach (var selectedItem in selectedItems)
+                {
+                    sizeNames += selectedItem.Id + " ";
+                }
+            }
             var validImageTypes = new string[]
                 {
                  "image/gif",
@@ -67,6 +93,8 @@ namespace EziBuy.Controllers
                     Caption = productViewModel.Caption,
                     ProductDescription = productViewModel.ProductDescription,
                     Price = productViewModel.Price,
+                    Size = sizeNames,
+                    Quantity = productViewModel.Quantity,
                     CategoryId = productViewModel.CategoryId
                 };
 
@@ -114,6 +142,16 @@ namespace EziBuy.Controllers
                 ViewBag.productId = productId;
                 //pass the product category list
                 ViewBag.ListofCategory = userDbContext.ProductCategoryContext.ToList();
+                ViewBag.ItemsBag = userDbContext.SizeContext.Select(v => new SelectListItem
+                {
+                    Text = v.Name,
+                    Value = v.Id.ToString() // implies all values are strings
+                }).ToList();
+
+                var selectedSizes = productInfo.Size.Select(s => Int32.TryParse(s.ToString(), out int n) ? n : (int?)null).ToList();
+
+
+                var selectedItems = userDbContext.SizeContext.Where(p => selectedSizes.Contains((int)(p.Id))).ToList();               
                 var productViewModel = new ProductViewModel
                 {
                     ProductName = productInfo.ProductName,
@@ -123,7 +161,14 @@ namespace EziBuy.Controllers
                     ProductDescription = productInfo.ProductDescription,
                     Price = productInfo.Price,
                     CategoryId = productInfo.CategoryId,
-                };
+                    SizesSelected = selectedItems.Select(v => new SelectListItem
+                    {
+                        Text = v.Name,
+                        Value = v.Id.ToString(),
+                        Selected = true
+                    }).ToList(),
+                    Quantity = productInfo.Quantity
+            };
                 return PartialView("EditProductInformationPartial", productViewModel);
             }
         }
@@ -136,9 +181,20 @@ namespace EziBuy.Controllers
             {
                 UserDbContext userDbContext = new UserDbContext();
                 var productDetail = userDbContext.ProductDetailContext.Find(productId);
+
                 if (productDetail == null)
                 {
                     return new HttpNotFoundResult();
+                }
+                productViewModel.Sizes = GetAllSizeTypes();
+                string sizeNames = string.Empty;
+                if (productViewModel.SizeIds != null)
+                {
+                    var selectedItems = productViewModel.Sizes.Where(p => productViewModel.SizeIds.Contains((int)(p.Id))).ToList();
+                    foreach (var selectedItem in selectedItems)
+                    {
+                        sizeNames += selectedItem.Id + " ";
+                    }
                 }
                 productDetail.Id = productId;
                 productDetail.ProductName = productViewModel.ProductName;
@@ -146,7 +202,8 @@ namespace EziBuy.Controllers
                 productDetail.Caption = productViewModel.Caption;
                 productDetail.Price = productViewModel.Price;
                 productDetail.ProductDescription = productViewModel.ProductDescription;
-
+                productDetail.Size = sizeNames;
+                productDetail.Quantity = productViewModel.Quantity;
                 productDetail.CategoryId = productViewModel.CategoryId;
                 userDbContext.SaveChanges();
                 return RedirectToAction("DisplayProductList");

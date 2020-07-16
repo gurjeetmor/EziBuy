@@ -3,22 +3,11 @@
 <link href="~/Content/drift-basic.min.css" rel="stylesheet" />
 <script src="~/Scripts/Drift.min.js"></script>
 
-<style>
-    .details {
-        float: right;
-        width: 45%;
-        position: relative;
-    }
-</style>
-
-
-
-<div class="container">
+<div class="container product-container">
     <div class="row">
-        <nav class="col-md-1" id="img1">
+        <nav class="col-md-1 col-xs-3 col-sm-1" id="img1">
             <ul class="nav nav-pills nav-stacked">
                 <li></li>
-
                 @foreach (var item in Model)
                 {
                     <li>
@@ -29,25 +18,14 @@
             </ul>
         </nav>
         <br />
-        <div class="col-md-5">
+        <div class="col-md-5 col-xs-9 col-sm-5">
             <img src="@Url.Content(ViewBag.defaultImage)" data-zoom="@Url.Content(ViewBag.defaultImage)" id="expandedImg" style="width:100%" />
 
         </div>
-        <div class="details col-md-6">
+        <div class="details col-md-6 col-xs-12 col-sm-6">
             @{ 
                 Html.RenderAction("Details", "Home");
             }
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-            <p>content goes here</p>
-
         </div>
     </div>
 

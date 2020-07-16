@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace EziBuy.Models
 {
@@ -37,7 +38,7 @@ namespace EziBuy.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Product Description is required field")]
         [Display(Name = "Product Description")]
-        [MaxLength(250, ErrorMessage = "Description should be less than 250 characters")]
+        [MaxLength(1000, ErrorMessage = "Description should be less than 1000 characters")]
         public string ProductDescription { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please select the product category")]
@@ -49,5 +50,12 @@ namespace EziBuy.Models
         public string Size { get; set; }
 
         public int? Quantity { get; set; }
+
+        public List<Size> Sizes { get; set; }
+
+        public IEnumerable<SelectListItem> SizesSelected { get; set; }
+
+        public List<int> SizeIds { get; set; }
+
     }
 }

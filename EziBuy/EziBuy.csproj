@@ -211,6 +211,7 @@
     <Compile Include="Controllers\ProductDescriptionController.cs" />
     <Compile Include="Controllers\RegistrationAndLoginController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +228,7 @@
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\Size.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserDbContext.cs" />
     <Compile Include="Models\UserRole.cs" />

@@ -31,5 +31,32 @@
     height: 40px;
 }
 
+.img-thumbnail {
+    
+}
+.details {
+    float: right;
+    width: 45%;
+    position: relative;
+}
+
+.product-container {
+    margin-top: 20px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .details {
+        width: 100% !important;
+        float: left !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .details {
+        width: 50% !important;
+        /*float: left !important;*/
+    }
+}
+
 
 
