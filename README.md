@@ -1,5 +1,5 @@
 #  E-commerce Shopping Store 
-* Implemented using C#, ASP.NET, MVC, Bootstrap, HTML, CSS, JS, AJAX, jQuery.
+* Implemented using C#, ASP.NET, MVC, Bootstrap, HTML, CSS, JS, AJAX, jQuery (In Progress).
 
 ## Solution Structure
 
