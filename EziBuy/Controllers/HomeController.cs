@@ -70,8 +70,8 @@ namespace EziBuy.Controllers
             using (UserDbContext userDbContext = new UserDbContext())
             {
                 var productId = Convert.ToInt32(TempData["ProductId"]);
-                var productDetail = userDbContext.ProductDetailContext.Where(x => x.Id == productId).SingleOrDefault();
-                return PartialView("DetailsPartial", productDetail);
+                ViewBag.productDetail = userDbContext.ProductDetailContext.Where(x => x.Id == productId).SingleOrDefault();
+                return PartialView("DetailsPartial", new ProductViewModel());
             }
         }
     }

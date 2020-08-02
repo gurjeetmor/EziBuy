@@ -59,10 +59,12 @@
 
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Login", "Login", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
-                        <li>@Html.ActionLink("Register", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
-                    </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @*<a href='@Url.Action("Index", "ShoppingCart")'><strong>Cart</strong>  <span id="cart-status" class="badge">@ViewData["CartCount"]</span></a>*@
+                    <li class="active">@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    <li>@Html.ActionLink("Login", "Login", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                    <li>@Html.ActionLink("Register", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                </ul>
                 }
             </div>
         </div>

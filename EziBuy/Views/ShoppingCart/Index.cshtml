@@ -1,0 +1,108 @@
+﻿@model EziBuy.Models.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.ajax({
+                    type: "Post",
+                    url: "/ShoppingCart/RemoveFromCart",
+                    data: { id: recordToDelete },
+                    success: function (response) {
+
+                        $('#row-' + response.DeleteId).remove();
+                       
+                        $('#cart-total').text(response.CartTotal);
+                        $('#update-message').text(response.Message);
+                        $('#cart-status').text('Cart (' + response.CartCount + ')');                                         
+                    }
+                })              
+            }
+        });
+    });
+
+    //Logic to update the product quantity 
+    $(function () {
+        $(".update-product").change(function () {
+            var columns = $(this).closest('tr').children('td');
+            var productId = columns.find('input[type=hidden]:eq(0)').val()
+            var productQuantity = $(this).val();
+            var productSize = columns.find('input[type=hidden]:eq(1)').val();
+
+            $.ajax({
+                type: "Post",
+                url: "/ShoppingCart/UpdateCart",
+                data: { id: productId, quantity: productQuantity, size: productSize},
+                success: function () {
+                    window.location.href = "/ShoppingCart";
+                }
+            })
+        });
+    });
+</script>
+<h3>
+    Shopping Cart
+</h3>
+    @Html.ActionLink("Proceed to checkout", "AddressAndPayment", "Checkout", new { @class = "btn cart-button" })
+<div id="update-message">
+</div>
+<div class="container">
+
+    <table class="table table-responsive" style="text-align:left; margin-top:20px;">
+        <tr>
+            <th>Product</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="row-@item.Id">
+                <td>
+                    <img src="@Url.Content(item.Product.ImageUrl)" class="img-responsive" style="height:160px" alt="@item.Product.AltText" />
+                    @Html.ActionLink(item.Product.ProductName, "ProductDescription", "Home", new { productId = item.Product.Id }, null)
+                </td>
+                <td>@item.Size</td>
+                <td>                   
+                    <input type="hidden" name="productID" id="productID" value="@item.Product.Id" />
+                    <input type="hidden" name="productSize" id="productSize" value="@item.Size" />
+
+                    @Html.DropDownListFor(model => item.Count, Enumerable.Range(1, 10).Select(x => new SelectListItem
+       {
+           Value = x.ToString(),
+           Text = x.ToString(),
+       }), item.Count.ToString(), new { @class = "form-control update-product", id= "productChange" })
+
+                </td>
+                <td>
+                    @item.Product.Price
+                </td>
+                <td>
+                    <a href="#" class="RemoveLink btn btn-danger" data-id="@item.Id">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr>
+           <td></td>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td id="cart-total">
+                @Model.CartTotal
+            </td>
+        </tr>
+    </table>
+</div>
+<input type="hidden" id="hiddenProductId" />
+

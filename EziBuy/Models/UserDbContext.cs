@@ -16,6 +16,11 @@ namespace EziBuy.Models
         public DbSet<ProductImage> ProductImageContext { get; set; }
         public DbSet<ProductDescriptionModel> ProductDescriptionContext { get; set; }
         public DbSet<Size> SizeContext { get; set; }
+        public DbSet<Cart> CartContext { get; set; }
+        public DbSet<Order> OrderContext { get; set; }
+        public DbSet<OrderDetail> OrderDetailsContext { get; set; }
+
+        public System.Data.Entity.DbSet<EziBuy.Models.ShoppingCartViewModel> ShoppingCartViewModels { get; set; }
         //public DbSet<Login> LoginContext { get; set; }
     }
 }

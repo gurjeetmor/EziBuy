@@ -151,6 +151,7 @@
     <Content Include="ProductImages\MenT8B.jpg" />
     <Content Include="ProductImages\MenT9A.jpg" />
     <Content Include="ProductImages\MenT9B.jpg" />
+    <Content Include="ProductImages\user.png" />
     <Content Include="ProductImages\WomenO1A.jpg" />
     <Content Include="ProductImages\WomenO1B.jpg" />
     <Content Include="ProductImages\WomenO2A.jpg" />
@@ -221,13 +222,20 @@
       <DependentUpon>201812140356350_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\HomeCarousel.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\LoginDetail.cs" />
     <Compile Include="Models\ProductDescriptionModel.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\Size.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserDbContext.cs" />
@@ -272,6 +280,8 @@
     <Content Include="Views\ProductDescription\CreateProductDescriptionPartial.cshtml" />
     <Content Include="Views\ProductDescription\EditProductColorImagePartial.cshtml" />
     <Content Include="Views\ProductDescription\EditProductDescriptionPartial.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
