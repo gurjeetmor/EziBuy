@@ -5,10 +5,10 @@
         this view display the vertical product category bar*@
 
 
-        <ul class="dropdown-menu site-bar" aria-labelledby="navbarDropdown">
-            @foreach (var item in Model)
-            {
-                <li class="category-list">@Html.ActionLink(item.CategoryName, "BrowseCategoryProduct", new { categoryId = item.Id }, new { @class = "dropdown-item" })</li>
-            }
-        </ul>
-  
+<ul class="dropdown-menu site-bar" aria-labelledby="navbarDropdown">
+        @foreach (var item in Model)
+        {
+            <li class="category-list">@Html.ActionLink(item.CategoryName, "BrowseCategoryProduct", new { categoryId = item.Id }, new { @class = "dropdown-item" })</li>
+        }
+    </ul>
+

@@ -96,8 +96,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CarouselImages\Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
-    <Content Include="CarouselImages\iPhoneX-Svr.png" />
+    <Content Include="CarouselImages\carsouel-1.jpg" />
+    <Content Include="CarouselImages\carsouel-2.jpg" />
+    <Content Include="CarouselImages\carsouel-3.jpg" />
+    <Content Include="CarouselImages\carsouel-4.jpg" />
+    <Content Include="CarouselImages\default-carsouel.jpg" />
+    <Content Include="CarouselImages\karl-fredrickson-DsAjH9B24G8-unsplash.jpg" />
+    <Content Include="CarouselImages\Ladies Outerwear.jpg" />
+    <Content Include="CarouselImages\Ladies T-Shirts.jpg" />
+    <Content Include="CarouselImages\Men%27s Outerwear.jpg" />
+    <Content Include="CarouselImages\Men%27s T-Shirts.jpg" />
+    <Content Include="CarouselImages\vanessa-serpas-YHRilCaogJw-unsplash.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -286,6 +295,7 @@
     <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
     <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\CategoriesList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

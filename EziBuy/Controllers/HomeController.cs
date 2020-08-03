@@ -27,6 +27,15 @@ namespace EziBuy.Controllers
             }
         }
 
+        public ActionResult CategoriesList()
+        {
+            using (UserDbContext userDbContext = new UserDbContext())
+            {
+                var categoryList = userDbContext.ProductCategoryContext.ToList();
+                return PartialView("~/Views/Shared/CategoriesList.cshtml", categoryList);
+            }
+        }
+      
         //method display the products related to particular category when click on particular category
         public ActionResult BrowseCategoryProduct(int categoryId)
         {

@@ -2,23 +2,21 @@
 
 <link href="~/Content/EziBuy.css" rel="stylesheet" />
 
-<div class="container">
-    <div class="product-grid">
-        @foreach (var item in Model)
-        {
-            <div class="product-detail">
-                <a href="@Url.Action("ProductDescription", "Home", new {productId=item.Id })">
-                    <img src="@Url.Content(item.ImageUrl)" class="img-responsive" style="width:100%" alt="@item.AltText" />
-                    <div class="product-caption">
-                        @item.Caption
-                    </div>
-                    <div class="product-price">
-                        $@item.Price
-                    </div>
-                </a>
-            </div>
-        }
-    </div>
+<div class="product-grid">
+    @foreach (var item in Model)
+    {
+        <div class="product-detail">
+            <a href="@Url.Action("ProductDescription", "Home", new {productId=item.Id })">
+                <img src="@Url.Content(item.ImageUrl)" class="img-responsive" style="width:100%" alt="@item.AltText" />
+                <div class="product-caption">
+                    @item.Caption
+                </div>
+                <div class="product-price">
+                    $@item.Price
+                </div>
+            </a>
+        </div>
+    }
 </div>
 
 

@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<EziBuy.Models.ProductCategory>
 
 
-<div class="container">
     <div class="row">
         
         @*with html.partial can use the partial view that is used to display the particular portion
@@ -21,66 +20,69 @@
         <div class="col-sm-12 col-md-12">
             <br /><br />
             @*this render method is used to diplay the carousel. First call the Carousel method in
-            Home controller which pass the CarouselDetail list to Partial view and then call the
-            Partial View (~/Views/Shared/CarouselView.cshtml)
-            that is define under shared folder*@
+        Home controller which pass the CarouselDetail list to Partial view and then call the
+        Partial View (~/Views/Shared/CarouselView.cshtml)
+        that is define under shared folder*@
 
             @{
                 Html.RenderAction("Carousel", "Home");
             }
 
+            @{
+                Html.RenderAction("CategoriesList", "Home");
+            }
+
             @*<!--carousel-->
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!--indicates dots in carousel-->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-                <!--wrapper for slides--><div class="item active">
-                        <img src="~/ProductImages/Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
-                        <div class=" carousel-caption">
-                            <h4>First Image Caption</h4>
-                        </div>
-                    </div>
-                <div class="carousel-inner" role="listbox">
-
-
-                    <div class="item">
-                        <img src="~/ProductImages/Red-Flowers.bmp" />
-                        <div class=" carousel-caption">
-                            <h4>Second Image Caption</h4>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="~/ProductImages/Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
-                        <div class=" carousel-caption">
-                            <h4>Third Image Caption</h4>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="~/ProductImages/Red-Flowers.bmp" />
-                        <div class=" carousel-caption">
-                            <h4>Forth Image Caption</h4>
-                        </div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!--indicates dots in carousel-->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+            <!--wrapper for slides--><div class="item active">
+                    <img src="~/ProductImages/Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
+                    <div class=" carousel-caption">
+                        <h4>First Image Caption</h4>
                     </div>
                 </div>
-                <!--left and right glyphicons-->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+            <div class="carousel-inner" role="listbox">
 
 
-            </div><!--myCarousel-->*@
+                <div class="item">
+                    <img src="~/ProductImages/Red-Flowers.bmp" />
+                    <div class=" carousel-caption">
+                        <h4>Second Image Caption</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/ProductImages/Apple-iPhone-6-amp-iPhone-6-Plus.jpg" />
+                    <div class=" carousel-caption">
+                        <h4>Third Image Caption</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/ProductImages/Red-Flowers.bmp" />
+                    <div class=" carousel-caption">
+                        <h4>Forth Image Caption</h4>
+                    </div>
+                </div>
+            </div>
+            <!--left and right glyphicons-->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+
+        </div><!--myCarousel-->*@
         </div>
     </div>
-</div>
 

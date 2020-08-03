@@ -1,0 +1,20 @@
+﻿@model IEnumerable<EziBuy.Models.ProductCategory>
+
+<link href="~/Content/EziBuy.css" rel="stylesheet" />
+
+<div class="category-grid">
+    @foreach (var item in Model)
+    {
+        <div class="product-detail">
+            <img src="~/CarouselImages/@(item.CategoryName).jpg" class="img-responsive" style="width:100%" />
+            <div class="category-name">
+                @item.CategoryName
+            </div>
+            <a href="@Url.Action("BrowseCategoryProduct", "Home", new {categoryId = item.Id })">
+                <div class="btn add-button">Shop Now</div>
+            </a>
+        </div>
+    }
+</div>
+
+
