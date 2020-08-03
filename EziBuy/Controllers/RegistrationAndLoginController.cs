@@ -16,6 +16,16 @@ namespace EziBuy.Controllers
         {          
             return View();
         }
+
+        private void MigrateShoppingCart(string UserName)
+        {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(UserName);
+            Session[ShoppingCart.CartSessionKey] = UserName;
+        }
+
         //GET:Registration
         public ActionResult Registration()
         {
@@ -34,6 +44,7 @@ namespace EziBuy.Controllers
                     userDbContext.UserContext.Add(user);                    
                     userDbContext.SaveChanges();
                     ModelState.Clear();
+                    MigrateShoppingCart(user.EmailId);
                     ViewBag.Message = user.FirstName + " " + user.LastName + " " + "Successfully Register";
                 }
                 else
@@ -79,6 +90,7 @@ namespace EziBuy.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(loginDetail.EmailId, false);
                     Session["EmailId"] = loginDetail.EmailId.ToString();
+                    MigrateShoppingCart(loginDetail.EmailId);
                     if (loginDetail.RememberMe)
                     {                       
                         HttpCookie cookie = new HttpCookie("LoginCookie");

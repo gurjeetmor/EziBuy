@@ -23,10 +23,10 @@
                {
                     new SelectListItem { Text = "XS", Value = "XS" },
                     new SelectListItem { Text = "S", Value = "S" },
-                    new SelectListItem { Text = "M", Value = "M" },
+                    new SelectListItem { Text = "M", Value = "M", Selected = true },
                     new SelectListItem { Text = "L", Value = "L" },
                     new SelectListItem { Text = "XL", Value = "XL" }
-               }, "M", new { @class = "form-control custom-form-control" })
+               }, new { @class = "form-control custom-form-control" })
                 @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
             </div>
         </div>

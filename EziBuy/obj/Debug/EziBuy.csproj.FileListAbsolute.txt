@@ -72,3 +72,4 @@ C:\Users\Gurjeet kaur\source\repos\EziBuy\EziBuy\bin\roslyn\System.IO.Pipes.dll
 C:\Users\Gurjeet kaur\source\repos\EziBuy\EziBuy\bin\roslyn\System.Security.AccessControl.dll
 C:\Users\Gurjeet kaur\source\repos\EziBuy\EziBuy\bin\roslyn\System.Security.Claims.dll
 C:\Users\Gurjeet kaur\source\repos\EziBuy\EziBuy\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Gurjeet kaur\source\repos\EziBuy\EziBuy\obj\Debug\EziBuy.csprojAssemblyReference.cache

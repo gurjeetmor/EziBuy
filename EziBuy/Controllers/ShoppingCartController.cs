@@ -73,8 +73,6 @@ namespace EziBuy.Controllers
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(productName) +
-                    " has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),               
                 DeleteId = id

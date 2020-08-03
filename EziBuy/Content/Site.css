@@ -199,6 +199,13 @@ a:hover {
     margin : 20px 5px;
 }
 
+.badge {
+    display: block !important;
+    position: absolute !important;
+    top: 3px !important;
+    left: 20px !important;
+}
+
 
 
 

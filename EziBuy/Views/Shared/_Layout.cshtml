@@ -42,21 +42,25 @@
                                     Products<span id="icon"></span>
                                 </a>
                                 <ul class="dropdown-menu site-bar" aria-labelledby="navbarDropdown">
+                                    <li>@Html.ActionLink("Product Categories", "DisplayProductCategory", "ProductCategory", new { area = "" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Product list", "DisplayProductList", "Product", new { area = "" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Products Detail", "DisplayProductDescriptionList", "ProductDescription", new { area = "" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Products Images", "DisplayProductImages", "Image", new { area = "" }, new { @class = "dropdown-item" })</li>
                                 </ul>
                             </li>
-                            <li>@Html.ActionLink("Users", "UsersDetail", "Admin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
-
-                            <li>@Html.ActionLink("Categories", "DisplayProductCategory", "ProductCategory", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                            <li>@Html.ActionLink("Users", "UsersDetail", "Admin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>                     
                             <li>@Html.ActionLink("Carousel", "DisplayCarouselList", "Carousel", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
                         }
                         <li>@Html.ActionLink("Profile", "UserInformation", "UserProfile", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
-                    }
+                   }
                 </ul>
-
+                @if (User.Identity.IsAuthenticated)
+                {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart", new { @class = "navbar-brand site-bar" });}</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "RegistrationAndLogin", new { area = "" }, new { @class = "navbar-brand site-bar" }))</li>
+                </ul>
+                }
                 @if (!User.Identity.IsAuthenticated)
                 {
                 <ul class="nav navbar-nav navbar-right">
