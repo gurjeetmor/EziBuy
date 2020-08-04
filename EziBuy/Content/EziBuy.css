@@ -1,4 +1,4 @@
-﻿
+﻿/*Carsouel*/
 .carousel .carousel-inner .item img {
     margin-left: auto;
     margin-right: auto;
@@ -14,6 +14,7 @@
     text-align: center;
 }
 
+/*Product image zoom*/
 .img-zoom-result {
     border: 1px solid #d4d4d4;
     /*set the size of the result div:*/
@@ -29,9 +30,7 @@
     height: 40px;
 }
 
-.img-thumbnail {
-    
-}
+/*Product detail*/
 .details {
     float: right;
     width: 45%;
@@ -56,17 +55,7 @@
     }
 }
 
-registration-form {
 
-}
-
-.form-title {
-    text-align: center !important;
-    font-size: 25px;
-    color: black;
-    font-weight: bold;
-    margin-top: 20px;
-}
 
 
 

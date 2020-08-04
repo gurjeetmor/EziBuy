@@ -4,52 +4,51 @@
     ViewBag.Title = "Login";
 }
 
-<div class="registration-form row">
-    <div class="col-xs-12 col-sm-12 col-md-10">
-        <div style="text-align: center;"></div>
-        <div class="form-title col-md-offset-2">Login</div>
-
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-9">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal col-md-offset-2">
-                <br />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(model => model.RememberMe)
-                            @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-3 col-md-9">
-                        <input type="submit" value="Login" class="btn add-button" />
-                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn cancel-button" })
-                    </div>
+        <div class="form-horizontal col-md-offset-4 registration-login-form">
+            <br />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-title">Login</div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-1 col-sm-1 col-md-1">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(model => model.RememberMe)
+                        @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div style="padding-top: 7px;">@Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "col-xs-10 col-sm-11 col-md-11" })</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Login" class="btn add-button" style="width: 100%" />
+                </div>
+                <div class="col-md-12" style="padding-top: 20px;">
+                    Don't have an account? @Html.ActionLink("Register now", "Registration", "RegistrationAndLogin", new { area = "" }, new { @class = "" })
+                </div>
+            </div>
+        </div>
         }
     </div>
 </div>

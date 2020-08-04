@@ -6,7 +6,7 @@
     @foreach (var item in Model)
     {
         <div class="product-detail">
-            <img src="~/CarouselImages/@(item.CategoryName).jpg" class="img-responsive" style="width:100%" />
+            <img src="~/CarouselImages/@(item.CategoryName).jpg" class="img-responsive" style="width:100%" alt="@item.CategoryName" />
             <div class="category-name">
                 @item.CategoryName
             </div>

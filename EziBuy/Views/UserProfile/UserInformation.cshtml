@@ -32,7 +32,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <a href="#" class="close" data-dismiss="modal">&times;</a>
-                    <h3 class="modal-title">Edit Personnal Information</h3>
+                    <h3 class="modal-title">Edit</h3>
                 </div>
                 <div class="modal-body" id="myModalBodyDiv">
                     <form id="myForm">
@@ -114,9 +114,6 @@
     }
     $(document).ready(function () {
         $("#btnSubmit").click(function () {
-
-
-
             var myFormData = $("#myForm").serialize();
             //Condition validate the data enter by user and shows the validation messages
             if (!$("#myForm").valid()) {

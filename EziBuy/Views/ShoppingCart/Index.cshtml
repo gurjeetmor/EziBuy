@@ -59,22 +59,23 @@ else
     @Html.ActionLink("Proceed to checkout", "AddressAndPayment", "Checkout", new { area = "" }, new { @class = "btn cart-button" })
     <div id="update-message">
     </div>
-    <div class="container">
 
-        <table class="table table-responsive" style="text-align:left; margin-top:20px;">
+        <table class="table table-responsive cart-table" style="text-align:left; margin-top:20px;">
             <tr>
                 <th>Product</th>
                 <th>Size</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th></th>
             </tr>
             @foreach (var item in Model.CartItems)
             {
                 <tr id="row-@item.Id">
                     <td>
-                        <img src="@Url.Content(item.Product.ImageUrl)" class="img-responsive" style="height:160px" alt="@item.Product.AltText" />
+                        <img src="@Url.Content(item.Product.ImageUrl)" class="img-responsive cart-product-image" style="height: 160px" alt="@item.Product.AltText" />
                         @Html.ActionLink(item.Product.ProductName, "ProductDescription", "Home", new { productId = item.Product.Id }, null)
+                        <a href="#" class="RemoveLink" data-id="@item.Id">
+                            <div class="btn cancel-button">Delete</div>
+                        </a>
                     </td>
                     <td>@item.Size</td>
                     <td>
@@ -91,15 +92,9 @@ else
                     <td>
                         @item.Product.Price
                     </td>
-                    <td>
-                        <a href="#" class="RemoveLink btn btn-danger" data-id="@item.Id">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </a>
-                    </td>
                 </tr>
             }
             <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td>Total</td>
@@ -108,7 +103,6 @@ else
                 </td>
             </tr>
         </table>
-    </div>
 }
 
 

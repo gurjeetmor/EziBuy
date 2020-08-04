@@ -1,6 +1,7 @@
 #  E-commerce Shopping Store 
 * Implemented using C#, ASP.NET, MVC, Bootstrap, HTML, CSS, JS, AJAX, jQuery (In Progress).
 
+## <a href = "https://ezibuy20200803072457.azurewebsites.net/" > Live Demo </a>
 ## Solution Structure
 
 * The solution functionality divided into three separate parts based on roles either User, Guest or Admin.

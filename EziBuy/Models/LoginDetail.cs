@@ -9,7 +9,7 @@ namespace EziBuy.Models
     public class LoginDetail
     {
         [Key]
-        [Display(Name = "Email-Id")]
+        [Display(Name = "Email Address")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your Email-Id")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Please enter valid Email address")]
         public string EmailId { get; set; }

@@ -10,12 +10,14 @@
     padding-right: 15px;
 }
 
+/*Site Icon*/
 .site-name {
     color: white !important;
     font-size: 30px !important;
     font-weight: 700 !important;
 }
 
+/*buttons*/ 
 .add-button {
     border: solid 2px !important;
     border-radius: 4px !important;
@@ -33,10 +35,9 @@
 .cancel-button {
     border: solid 2px !important;
     border-radius: 4px !important;
-    background-color: white;
+    background-color: #e7e7e7;
     color: black;
     border-color: black;
-    float: right;
 }
 
 .cancel-button:hover {
@@ -60,6 +61,12 @@
     border-color: #4CAF50 !important;
 }
 
+.btn:focus, .btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+/*Navbar dropdown*/ 
 .dropdown-menu {
     padding: 5px 15px !important;
     background-color: black !important;
@@ -123,23 +130,16 @@ h1 {
 }
 
 a {
-    /*color: black !important;*/
     text-decoration: none !important;
 }
 
 a:hover {
-    /*color: black !important;*/
     text-decoration: none !important;
 }
 
+/*Product details*/
 .product-caption {
     color: black;
-}
-
-.category-name {
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .product-price {
@@ -154,12 +154,19 @@ a:hover {
     margin-bottom: 50px;
 }
 
+/*Category Home view*/
 .category-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     grid-gap: 10px;
     margin-top: 20px !important;
     margin-bottom: 50px;
+}
+
+.category-name {
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -182,47 +189,87 @@ a:hover {
     .category-grid {
         grid-template-columns: 1fr !important;
     }
-}
 
-@media screen and (min-width: 768px) and (max-width: 992px) {
-    .product-grid {
-        grid-template-columns: 1fr 1fr 1fr !important;
+    .registration-login-form {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .form-title {
+        font-size: 20px !important;
     }
 }
 
-.navbar-brand:hover {
-    color: white !important;
+@media screen and (max-width: 400px) {
+    .cart-product-image {
+        height: auto !important;
+    }
 }
 
-.custom-form-control {
-    display: inline-block !important;
-}
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+        .product-grid {
+            grid-template-columns: 1fr 1fr 1fr !important;
+        }
+    }
 
-.table-container {
-    overflow: scroll !important;
-    width: 100% !important;
-    margin-top: 20px !important;
-    text-align: center !important;
-}
+    .navbar-brand:hover {
+        color: white !important;
+    }
 
-.footer {
-    position: fixed;
-    width: 600px;
-    left: 50%;
-    bottom: 0%;
-    margin-left: -300px;
-}
+    .custom-form-control {
+        display: inline-block !important;
+    }
 
-.user-profile {
-    margin : 20px 5px;
-}
+    .table-container {
+        overflow: scroll !important;
+        width: 100% !important;
+        margin-top: 20px !important;
+        text-align: center !important;
+    }
 
-.badge {
-    display: block !important;
-    position: absolute !important;
-    top: 3px !important;
-    left: 20px !important;
-}
+    .footer {
+        position: fixed;
+        width: 600px;
+        left: 50%;
+        bottom: 0%;
+        margin-left: -300px;
+    }
+
+    .user-profile {
+        margin: 20px 5px;
+    }
+
+    .badge {
+        display: block !important;
+        position: absolute !important;
+        top: 3px !important;
+        left: 20px !important;
+    }
+
+    .registration-login-form {
+        margin-top: 40px;
+        padding: 10px 40px 40px 40px;
+        box-shadow: 0 10px 15px rgba(0,0,0,.3);
+        border-radius: 10px;
+    }
+
+    .form-title {
+        text-align: center !important;
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+
+    /*.cart-table {
+    min-width: 700px;
+}*/
+
+    .cart-product-image {
+        height: 160px;
+    }
+
+
 
 
 
